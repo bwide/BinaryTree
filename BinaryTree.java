@@ -80,4 +80,19 @@ public class BinaryTree {
     if (n==null) return 0;
     else return 1 + numNodos(n.left) + numNodos(n.right);
   }
+
+  public int pai(int n){
+    return pai(null, root, n);
+  }
+
+  private int pai(Node pai, Node n, int data){
+    if(n.data == data)
+      if(pai!=null) return pai.data;
+      else return -1;
+    if( data > n.data ) return pai(n, n.right, data);
+    if( data < n.data ) return pai(n, n.left, data);
+    return -1;
+  }
+
+  
 }
