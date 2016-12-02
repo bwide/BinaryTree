@@ -16,6 +16,14 @@ public class BTest {
       if ( temp.equals( "altura" ) ) System.out.println( T.altura() );
       if ( temp.equals( "numNodos" ) ) System.out.println( T.numNodos() );
       if ( temp.equals( "pai" ) ) System.out.println( T.pai( input.nextInt() ) );
+      if ( temp.equals( "soma" ) ) System.out.println( T.soma() );
+      if ( temp.equals( "conta" ) ) System.out.println( T.conta( input.nextInt() ) );
+      if ( temp.equals( "numPares" ) ) System.out.println( T.numPares() );
+      if ( temp.equals( "emOrdem" ) ) T.emOrdem();
+      if ( temp.equals( "emOrdemDec" ) ) T.emOrdemDec();
+      if ( temp.equals( "espelha" ) ) T.espelha();
+      
+      
       T.print();
     }
     //T.print();
