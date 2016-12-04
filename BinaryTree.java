@@ -20,7 +20,7 @@ public class BinaryTree {
 
   private Node insert( Node n, int data ) {
     if(n==null) return new Node(data);
-    if(data > n.data) n.right = insert(n.right, data);
+    if(data >= n.data) n.right = insert(n.right, data);
     if(data < n.data) n.left = insert(n.left, data);
     return n;
   }
@@ -163,5 +163,52 @@ public class BinaryTree {
     Node aux = n.left;
     n.left = n.right;
     n.right = aux;
+  }
+
+  public void copy(BinaryTree b){
+    destroy();
+    this.root = b.root; 
+  }
+
+  private boolean hasInt(Node n, int data){//procura por toda a arvore, usado em 'hasrep'
+    if(n==null) return false;
+    if(n.data==data) return true;
+    return hasInt(n.left, data) || hasInt(n.right, data);
+  }
+
+  public boolean hasRep(){
+    return hasRep(root);
+  }
+
+  private boolean hasRep(Node n){
+    if( n==null ) return false;
+    if( hasInt(n.left, n.data) || hasInt(n.right, n.data) ) return true;
+    return hasRep(n.left) || hasRep(n.right);
+  }
+
+  public void join(BinaryTree a, BinaryTree b){
+    destroy();
+    root = join(a.root,b.root);
+  }
+
+  private Node join(Node a, Node b){
+    if(a==null&&b==null) return null;
+    if(a==null) return b;
+    if(b==null) return a;
+    if(a.data == b.data){
+      a.left = join(a.left, b.left);
+      a.right = join(a.right, b.right);
+      return a;
+    }
+    if( a.data > b.data ){
+      a.left = join(a.left, b);
+      a.right = join(a.right, b.right);
+      return a;
+    }
+    else{
+      b.left = join(a.left, b.left);
+      b.right = join(a, b.right);
+      return b;
+    }
   }
 }

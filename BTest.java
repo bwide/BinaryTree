@@ -4,6 +4,16 @@ public class BTest {
 
   public static void main( String[] args ) {
     BinaryTree T = new BinaryTree();
+    BinaryTree t1 = new BinaryTree();
+    BinaryTree t2 = new BinaryTree();
+    
+    t1.insert(5);
+    t1.insert(4);
+    t1.insert(10);
+
+    t2.insert(5);
+    t2.insert(2);
+    t2.insert(7);
 
     Scanner input = new Scanner( System.in );
 
@@ -22,7 +32,9 @@ public class BTest {
       if ( temp.equals( "emOrdem" ) ) T.emOrdem();
       if ( temp.equals( "emOrdemDec" ) ) T.emOrdemDec();
       if ( temp.equals( "espelha" ) ) T.espelha();
-      
+      if ( temp.equals( "copia" ) ) T.copy( t1 );
+      if ( temp.equals( "hasRep" ) ) System.out.println( ( T.hasRep() ? "true" : "false" ) );
+      if ( temp.equals( "join" ) ) T.join( t1, t2 );
       
       T.print();
     }
