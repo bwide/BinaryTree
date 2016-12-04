@@ -35,7 +35,8 @@ public class BTest {
       if ( temp.equals( "copia" ) ) T.copy( t1 );
       if ( temp.equals( "hasRep" ) ) System.out.println( ( T.hasRep() ? "true" : "false" ) );
       if ( temp.equals( "join" ) ) T.join( t1, t2 );
-      
+      if ( temp.equals( "ancestral" ) ) System.out.println(T.ancestral( input.nextInt(), input.nextInt() ));
+      if ( temp.equals( "nivel" ) ) System.out.println( T.nivel( input.nextInt() ) );
       T.print();
     }
     //T.print();

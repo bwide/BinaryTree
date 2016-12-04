@@ -20,7 +20,7 @@ public class BinaryTree {
 
   private Node insert( Node n, int data ) {
     if(n==null) return new Node(data);
-    if(data >= n.data) n.right = insert(n.right, data);
+    if(data > n.data) n.right = insert(n.right, data);
     if(data < n.data) n.left = insert(n.left, data);
     return n;
   }
@@ -81,8 +81,8 @@ public class BinaryTree {
     else return 1 + numNodos(n.left) + numNodos(n.right);
   }
 
-  public int pai(int n){
-    return pai(null, root, n);
+  public int pai(int data){ 
+    return pai(null, root, data);
   }
 
   private int pai(Node pai, Node n, int data){
@@ -210,5 +210,25 @@ public class BinaryTree {
       b.right = join(a, b.right);
       return b;
     }
+  }
+
+  private Node find(Node n, int data){
+    if( n==null ) return null;
+    if( n.data==data ) return n;
+    return ( data < n.data ? find(n.left, data) : find(n.right, data) );
+  }
+
+  public int ancestral(int a, int b){
+    if(a==b) return a;
+    int nA = nivel(a);
+    int nB = nivel(b);
+    if( nA == nB ) return ancestral(pai(a),pai(b));
+    if( nA > nB ) return ancestral(pai(a),b);
+    else return ancestral(a,pai(b));
+  }
+
+  public int nivel(int n){
+    if(root.data == n) return 0;
+    else return 1 + nivel(pai(n));
   }
 }
