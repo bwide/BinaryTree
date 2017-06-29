@@ -55,9 +55,10 @@ public class BinaryTree {
 
   public Boolean exists(Node n, int data){
     if(n == null) return false;
+    if(n.data == data ) return true;
     if(data > n.data) return exists(n.right, data);
     if(data < n.data) return exists(n.left, data);
-    return true;
+    return false;
   }
 
   public int altura(){
@@ -87,7 +88,7 @@ public class BinaryTree {
 
   private int pai(Node pai, Node n, int data){
     if(n.data == data)
-      if(pai!=null) return pai.data;
+      if(pai!=null) return pai.data; // root
       else return -1;
     if( data > n.data ) return pai(n, n.right, data);
     if( data < n.data ) return pai(n, n.left, data);
@@ -182,8 +183,9 @@ public class BinaryTree {
 
   private boolean hasRep(Node n){
     if( n==null ) return false;
-    if( hasInt(n.left, n.data) || hasInt(n.right, n.data) ) return true;
-    return hasRep(n.left) || hasRep(n.right);
+    return hasInt(n.left, n.data) || hasInt(n.right, n.data);
+    // if( hasInt(n.left, n.data) || hasInt(n.right, n.data) ) return true;
+    // return hasRep(n.left) || hasRep(n.right);
   }
 
   public void join(BinaryTree a, BinaryTree b){
@@ -192,9 +194,10 @@ public class BinaryTree {
   }
 
   private Node join(Node a, Node b){
-    if(a==null&&b==null) return null;
+    if(a==null && b==null) return null;
     if(a==null) return b;
     if(b==null) return a;
+
     if(a.data == b.data){
       a.left = join(a.left, b.left);
       a.right = join(a.right, b.right);
@@ -205,7 +208,7 @@ public class BinaryTree {
       a.right = join(a.right, b.right);
       return a;
     }
-    else{
+    else{ //a.data < b.data
       b.left = join(a.left, b.left);
       b.right = join(a, b.right);
       return b;
@@ -230,5 +233,14 @@ public class BinaryTree {
   public int nivel(int n){
     if(root.data == n) return 0;
     else return 1 + nivel(pai(n));
+  }
+
+  public static boolean isABP( Node n ) {
+    if( n == null ) return true;
+    if( isABP(n.left) && isABP(n.right) ) return true;
+    if(n.left != null && n.left.data < n.data) return true;
+    if(n.right != null && n.right.data > n.data) return true; 
+    
+    return false;
   }
 }
