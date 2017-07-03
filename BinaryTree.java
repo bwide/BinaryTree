@@ -222,12 +222,17 @@ public class BinaryTree {
   }
 
   public int ancestral(int a, int b){
-    if(a==b) return a;
-    int nA = nivel(a);
-    int nB = nivel(b);
-    if( nA == nB ) return ancestral(pai(a),pai(b));
-    if( nA > nB ) return ancestral(pai(a),b);
-    else return ancestral(a,pai(b));
+      if (a == b) return pai(a);
+      return ancestral_aux(a, b);
+  }
+
+  private int ancestral_aux(int a, int b){
+      if(a==b) return a;
+      int nA = nivel(a);
+      int nB = nivel(b);
+      if( nA == nB ) return ancestral_aux(pai(a),pai(b));
+      if( nA > nB ) return ancestral_aux(pai(a),b);
+      else return ancestral_aux(a,pai(b));
   }
 
   public int nivel(int n){
