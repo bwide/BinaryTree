@@ -171,21 +171,20 @@ public class BinaryTree {
     this.root = b.root;
   }
 
-  private boolean hasInt(Node n, int data){//procura por toda a arvore, usado em 'hasrep'
-    if(n==null) return false;
-    if(n.data==data) return true;
-    return hasInt(n.left, data) || hasInt(n.right, data);
-  }
-
   public boolean hasRep(){
-    return hasRep(root);
+      return hasRep(root);
   }
 
-  private boolean hasRep(Node n){
-    if( n==null ) return false;
-    return hasInt(n.left, n.data) || hasInt(n.right, n.data);
-    // if( hasInt(n.left, n.data) || hasInt(n.right, n.data) ) return true;
-    // return hasRep(n.left) || hasRep(n.right);
+  private boolean hasRep(Node n) {
+      if (n == null) return false;
+      if (hasInt(n.left, n.data) || hasInt(n.right, n.data)) return true;
+      return hasRep(n.left) || hasRep(n.right);
+  }
+
+  private boolean hasInt(Node n, int data){//procura por toda a arvore, usado em 'hasrep'
+      if(n == null) return false;
+      if(n.data == data) return true;
+      return hasInt(n.left, data) || hasInt(n.right, data);
   }
 
   public void join(BinaryTree a, BinaryTree b){
