@@ -273,4 +273,24 @@ public class BinaryTree {
 
       return right > left ? caminho(n.right) + " " + n.data : caminho(n.left) + " " + n.data;
   }
+
+  public String maxPath(){
+    return maxPath(root.data % 2, root);
+  }
+  private String maxPath(int p, Node n){
+    if (n == null) return "";
+
+    int left = -1 * n.data, right = -1 * n.data;
+    if (n.left != null && n.left.data % 2 == p) left = maiorSomaParidade(n.left, p);
+    if (n.right != null && n.right.data % 2 == p) right = maiorSomaParidade(n.right, p);
+
+    return right > left ? maxPath(p, n.right) + " " + n.data : maxPath(p, n.left) + " " + n.data;
+  }
+  private int maiorSomaParidade(Node n, int p){
+    if(n == null) return 0;
+    int left = -1 * n.data, right = -1 * n.data;
+    if(n.left != null && n.left.data % 2 == p) left = maiorSomaParidade(n.left, p);
+    if(n.right != null && n.right.data % 2 == p) right = maiorSomaParidade(n.right, p);
+    return left > right ? left + n.data : right + n.data;
+  }
 }
