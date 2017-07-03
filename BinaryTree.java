@@ -131,14 +131,14 @@ public class BinaryTree {
   }
 
   public void emOrdem(){
-    emOrdem(root);
+      emOrdem(root);
   }
 
   private void emOrdem(Node n){
-    if(n==null) return;
-    if(n.left!=null) emOrdem(n.left);
-    System.out.println( n.data );
-    if(n.right!=null) emOrdem(n.right);
+      if(n==null) return;
+      emOrdem(n.left);
+      System.out.println( n.data );
+      emOrdem(n.right);
   }
 
   public void emOrdemDec(){
