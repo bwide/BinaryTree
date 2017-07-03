@@ -82,7 +82,7 @@ public class BinaryTree {
     else return 1 + numNodos(n.left) + numNodos(n.right);
   }
 
-  public int pai(int data){ 
+  public int pai(int data){
     return pai(null, root, data);
   }
 
@@ -151,7 +151,7 @@ public class BinaryTree {
     System.out.println( n.data );
     if(n.left!=null) emOrdem(n.left);
   }
-  
+
   public void espelha(){
     espelha(root);
   }
@@ -168,7 +168,7 @@ public class BinaryTree {
 
   public void copy(BinaryTree b){
     destroy();
-    this.root = b.root; 
+    this.root = b.root;
   }
 
   private boolean hasInt(Node n, int data){//procura por toda a arvore, usado em 'hasrep'
@@ -239,8 +239,20 @@ public class BinaryTree {
     if( n == null ) return true;
     if( isABP(n.left) && isABP(n.right) ) return true;
     if(n.left != null && n.left.data < n.data) return true;
-    if(n.right != null && n.right.data > n.data) return true; 
-    
+    if(n.right != null && n.right.data > n.data) return true;
+
     return false;
+  }
+
+  public int maiorSoma(){
+        return maiorSoma(root);
+  }
+
+  private int maiorSoma(Node n){
+      if(n == null) return 0;
+      int left, right;
+      left = maiorSoma(n.left);
+      right = maiorSoma(n.right);
+      return left > right ? left + n.data : right + n.data;
   }
 }
