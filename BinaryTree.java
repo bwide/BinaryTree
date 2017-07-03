@@ -255,4 +255,18 @@ public class BinaryTree {
       right = maiorSoma(n.right);
       return left > right ? left + n.data : right + n.data;
   }
+
+  public String caminho(){
+      return caminho(root);
+  }
+
+  private String caminho(Node n){
+      if(n == null) return "";
+
+      int left, right;
+      right = maiorSoma(n.right);
+      left = maiorSoma(n.left);
+
+      return right > left ? caminho(n.right) + " " + n.data : caminho(n.left) + " " + n.data;
+  }
 }
